@@ -20,7 +20,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="text-slate-400">
-              © 2024 Portfolio. Crafted with passion and code.
+              © 2025 Mustafa`s Portfolio. All rights reserved.
             </p>
           </div>
         </div>

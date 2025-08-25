@@ -1,26 +1,70 @@
-
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
+import React, { useState } from "react";
+import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react";
+import { supabase } from "@/lib/supabaseClient";
+import { toast } from "@/components/ui/use-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { name, email, message } = formData;
+
+      const { error } = await supabase
+        .from("contact_messages")
+        .insert([{ name, email, message }]);
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
+        //console.error("Submission error:", error.message);
+        // Show error feedback to user
+      } else {
+        toast({
+          title: "Success",
+          description: "Your message has been sent successfully!",
+          variant: "success",
+        });
+        // Show success feedback and reset form
+        setFormData({ name: "", email: "", message: "" });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred. Please try again later.",
+        variant: "destructive",
+      });
+      //console.error("Error submitting form:", error);
+      // Handle error feedback to user
+    }
+  };
+  /*const handleSubmit1 = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     // Handle form submission here
-    alert('Message sent! I\'ll get back to you soon.');
+    toast({
+  title: "Message Sent",
+  description: "Thank you for reaching out! Your message has been received.",variant: "destructive",
+        duration: 3000,
+})
     setFormData({ name: '', email: '', message: '' });
-  };
+  };*/
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -32,8 +76,9 @@ const Contact = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Let's Connect
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to bring your ideas to life? Let's discuss your next project or collaboration
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-justify">
+            Ready to bring your ideas to life? Let's discuss your next project
+            or collaboration
           </p>
         </div>
 
@@ -42,10 +87,10 @@ const Contact = () => {
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
-              <p className="text-muted-foreground mb-8">
-                I'm always interested in new opportunities and exciting projects. 
-                Whether you need a developer, an AI artist, or just want to chat about technology, 
-                feel free to reach out!
+              <p className="text-muted-foreground mb-8 text-justify">
+                I'm always interested in new opportunities and exciting
+                projects. Whether you need a developer, an AI artist, or just
+                want to chat about technology, feel free to reach out!
               </p>
             </div>
 
@@ -57,27 +102,36 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="font-semibold">Email</p>
-                  <p className="text-muted-foreground">hello@example.com</p>
+                  <p className="text-muted-foreground">
+                    <a
+                      href="https://mail.google.com/mail/?view=cm&fs=1&to=mustafa25008c@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:underline"
+                    >
+                      mustafa25008c@gmail.com
+                    </a>
+                  </p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full">
                   <Phone className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <p className="font-semibold">Phone</p>
-                  <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                  <p className="text-muted-foreground">+92 3244842747 </p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full">
                   <MapPin className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <p className="font-semibold">Location</p>
-                  <p className="text-muted-foreground">Available Remote & Local</p>
+                  <p className="text-muted-foreground">Lahore Pakistan</p>
                 </div>
               </div>
             </div>
@@ -88,15 +142,26 @@ const Contact = () => {
               <div className="flex gap-4">
                 <a
                   href="#"
-                  className="flex items-center justify-center w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white transition-all duration-300 group"
+                  className="flex items-center justify-center w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-gradient-to-r hover:bg-black hover:text-white transition-all duration-300 group"
                 >
                   <Github className="w-6 h-6" />
                 </a>
                 <a
-                  href="#"
-                  className="flex items-center justify-center w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white transition-all duration-300 group"
+                  href="www.linkedin.com/in/muhammad-mustafa-90881537a"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-gradient-to-r hover:bg-blue-700 hover:text-white transition-all duration-300 group"
                 >
                   <Linkedin className="w-6 h-6" />
+                </a>
+                {/* Fiverr */}
+                <a
+                  href="https://www.fiverr.com/john06489?public_mode=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-full hover:bg-gradient-to-r hover:from-green-400 hover:to-emerald-600 hover:text-white transition-all duration-300 group"
+                >
+                  <span className="font-['Montserrat'] font-bold text-lg">fi</span>
                 </a>
               </div>
             </div>
@@ -106,7 +171,10 @@ const Contact = () => {
           <div className="bg-card p-8 rounded-2xl shadow-lg border">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium mb-2"
+                >
                   Full Name
                 </label>
                 <input
@@ -120,9 +188,12 @@ const Contact = () => {
                   placeholder="Your name"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium mb-2"
+                >
                   Email Address
                 </label>
                 <input
@@ -136,9 +207,12 @@ const Contact = () => {
                   placeholder="your.email@example.com"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium mb-2"
+                >
                   Message
                 </label>
                 <textarea
@@ -152,7 +226,7 @@ const Contact = () => {
                   placeholder="Tell me about your project or idea..."
                 />
               </div>
-              
+
               <button
                 type="submit"
                 className="w-full px-6 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"

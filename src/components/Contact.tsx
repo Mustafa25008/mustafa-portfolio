@@ -5,7 +5,7 @@ import { toast } from "@/components/ui/use-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    full_name: "",
     email: "",
     message: "",
   });
@@ -14,11 +14,11 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const { name, email, message } = formData;
+      const { full_name, email, message } = formData;
 
       const { error } = await supabase
-        .from("contact_messages")
-        .insert([{ name, email, message }]);
+        .from("contact_submissions")
+        .insert([{ full_name, email, message }]);
 
       if (error) {
         toast({
@@ -35,7 +35,7 @@ const Contact = () => {
           variant: "success",
         });
         // Show success feedback and reset form
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ full_name: "", email: "", message: "" });
       }
     } catch (error) {
       toast({
@@ -179,9 +179,9 @@ const Contact = () => {
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
+                  id="full_name"
+                  name="full_name"
+                  value={formData.full_name}
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-background"

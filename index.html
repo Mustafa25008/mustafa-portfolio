@@ -9,14 +9,20 @@
 
     <!-- Open Graph (for social sharing) -->
     <meta property="og:title" content="Mustafa's Portfolio" />
-    <meta property="og:description" content="Welcome to my personal portfolio showcasing projects, skills, and achievements." />
+    <meta
+      property="og:description"
+      content="Welcome to my personal portfolio showcasing projects, skills, and achievements."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/site-preview.png" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Mustafa's Portfolio" />
-    <meta name="twitter:description" content="Explore my projects, skills, and achievements." />
+    <meta
+      name="twitter:description"
+      content="Explore my projects, skills, and achievements."
+    />
     <meta name="twitter:image" content="/site-preview.png" />
     <!-- Site Icon -->
     <link rel="icon" type="image/x-icon" href="/favicon.png" />
@@ -24,6 +30,144 @@
 
   <body>
     <div id="root"></div>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        /* === Custom Chatbot Theme for Mustafa's Portfolio Assistant === */
+        --chat--color-primary: #4f46e5; /* Indigo/blue tone */
+        --chat--color-primary-shade-50: #4338ca;
+        --chat--color-primary-shade-100: #3730a3;
+        --chat--color-secondary: #8b5cf6; /* Purple tone */
+        --chat--color-secondary-shade-50: #7c3aed;
+        --chat--color-white: #ffffff;
+        --chat--color-light: #f3f4f6;
+        --chat--color-light-shade-50: #e5e7eb;
+        --chat--color-light-shade-100: #d1d5db;
+        --chat--color-medium: #9ca3af;
+        --chat--color-dark: #111827;
+        --chat--color-disabled: #6b7280;
+        --chat--color-typing: #555;
+
+        --chat--spacing: 1rem;
+        --chat--border-radius: 0.75rem;
+        --chat--transition-duration: 0.2s;
+        --chat--window--width: 400px;
+        --chat--window--height: 600px;
+
+        --chat--header-height: auto;
+        --chat--header--padding: var(--chat--spacing);
+        --chat--header--background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+        --chat--header--color: var(--chat--color-white);
+        --chat--header--border-top: none;
+        --chat--header--border-bottom: none;
+
+        --chat--heading--font-size: 1.5em;
+        --chat--subtitle--font-size: inherit;
+        --chat--subtitle--line-height: 1.6;
+
+        --chat--textarea--height: 50px;
+        --chat--message--font-size: 1rem;
+        --chat--message--padding: var(--chat--spacing);
+        --chat--message--border-radius: var(--chat--border-radius);
+        --chat--message-line-height: 1.6;
+
+        --chat--message--bot--background: var(--chat--color-light);
+        --chat--message--bot--color: var(--chat--color-dark);
+        --chat--message--bot--border: none;
+
+        --chat--message--user--background: var(--chat--color-secondary);
+        --chat--message--user--color: var(--chat--color-white);
+        --chat--message--user--border: none;
+
+        --chat--message--pre--background: rgba(0, 0, 0, 0.05);
+
+        --chat--toggle--background: var(--chat--color-primary);
+        --chat--toggle--hover--background: var(--chat--color-primary-shade-50);
+        --chat--toggle--active--background: var(
+          --chat--color-primary-shade-100
+        );
+        --chat--toggle--color: var(--chat--color-white);
+        --chat--toggle--size: 64px;
+      }
+      /* Chat Toggle Button Styling */
+      .chat-toggle {
+        background: linear-gradient(
+          90deg,
+          #4f46e5,
+          #8b5cf6
+        ) !important; /* Blue → Purple */
+        color: #ffffff !important; /* White icon */
+        border-radius: 50% !important;
+        width: 64px !important;
+        height: 64px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease-in-out;
+      }
+
+      /* Hover effect */
+      .chat-toggle:hover {
+        transform: scale(1.1);
+        background: linear-gradient(90deg, #4338ca, #7c3aed) !important;
+      }
+
+      /* Override chatbot header title */
+      .chat-header::before {
+        content: " Mustafa's Portfolio Assistant";
+        font-weight: bold;
+        font-size: 1.6em;
+        display: block;
+      }
+    </style>
+    <script type="module">
+      import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js";
+
+      createChat({
+        webhookUrl:
+          "https://hosic44070-n8n-free.hf.space/webhook/074fb278-d213-4cf2-853b-7b9a24ef224d/chat",
+      });
+    </script>
+    <script>
+      window.addEventListener("load", function () {
+        const BOT_OLD_NAME = "Nathan";
+        const BOT_NEW_NAME = "Mustafa's Portfolio Assistant";
+
+        const replaceBotName = () => {
+          const messages = document.querySelectorAll(".chat-message");
+          if (!messages.length) return; // safeguard if no messages yet
+
+          messages.forEach((el) => {
+            if (el.innerHTML.includes(BOT_OLD_NAME)) {
+              el.innerHTML = el.innerHTML.replace(
+                new RegExp(BOT_OLD_NAME, "g"),
+                BOT_NEW_NAME
+              );
+            }
+          });
+        };
+
+        // MutationObserver for dynamic messages
+        const observer = new MutationObserver(() => replaceBotName());
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        // Retry logic in case chatbot loads slowly
+        let retries = 0;
+        const interval = setInterval(() => {
+          replaceBotName();
+          retries++;
+          if (retries > 10) clearInterval(interval); // stop after ~10 tries
+        }, 1000);
+
+        // Initial delayed run
+        setTimeout(replaceBotName, 1500);
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

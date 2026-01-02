@@ -16,7 +16,7 @@ const Hero = () => {
   // Typing effect
   useEffect(() => {
     const typed = new Typed(typedRef.current, {
-      strings: ["Software Engineer", "Software Quality Assurance", "AI Artist"],
+      strings: ["Software Engineer", "Web Developer", "AI Artist"],
       typeSpeed: 50,
       backSpeed: 30,
       backDelay: 2000,

@@ -262,9 +262,9 @@ const About = () => {
               <option className="bg-purple-600 text-white" value="">
                 Select Resume
               </option>
-              <option className="bg-purple-600 text-white" value="SQA">
+              {/* <option className="bg-purple-600 text-white" value="SQA">
                 SQA Resume
-              </option>
+              </option> */}
               <option
                 className="bg-purple-600 text-white"
                 value="SoftwareEngineer"

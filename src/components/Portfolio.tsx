@@ -6,24 +6,6 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: "Learning Management System",
-      description:
-        "Manage courses, students, and instructors with features like enrollment, grading, and progress tracking.",
-      image: "/project/lms.png",
-      tech: ["C#", ".NET", "Windows Forms", "SQL Server", "Design Patterns"],
-      github: "#",
-      demo: "",
-    },
-    {
-      title: "Gmail-like Desktop App",
-      description:
-        "A desktop application replicating Gmail’s core features including sending, receiving, and organizing emails with labels.",
-      image: "/project/mail.png",
-      tech: ["C#", ".NET", "Windows Forms", "SQL Server", "Visual Studio"],
-      github: "#",
-      demo: "",
-    },
-    {
       title: "AI Recipe Generator (Recipe Magic)",
       description:
         "Generate creative AI-based recipes, store them in Supabase, and explore them on a dynamic dashboard.",
@@ -58,6 +40,24 @@ const Portfolio = () => {
       ],
       github: "#",
       demo: "https://blog-summarizer-topaz.vercel.app/",
+    },
+    {
+      title: "Learning Management System",
+      description:
+        "Manage courses, students, and instructors with features like enrollment, grading, and progress tracking.",
+      image: "/project/lms.png",
+      tech: ["C#", ".NET", "Windows Forms", "SQL Server", "Design Patterns"],
+      github: "#",
+      demo: "",
+    },
+    {
+      title: "Gmail-like Desktop App",
+      description:
+        "A desktop application replicating Gmail’s core features including sending, receiving, and organizing emails with labels.",
+      image: "/project/mail.png",
+      tech: ["C#", ".NET", "Windows Forms", "SQL Server", "Visual Studio"],
+      github: "#",
+      demo: "",
     },
     /*
     {

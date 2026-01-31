@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mustafa`s Portfolio</title>
-    <meta name="description" content="Lovable Generated Project" />
+    <meta name="description" content="My Portfolio Site to show my projects, skills, and achievements." />
     <meta name="author" content="Muhammad Mustafa" />
 
     <!-- Open Graph (for social sharing) -->
@@ -127,10 +127,10 @@
     </style>
     <script type="module">
       import { createChat } from "https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js";
-
+      const chat_url = import.meta.env.VITE_CHATBOT_WEBHOOK_URL;
       createChat({
         webhookUrl:
-          "",
+          chat_url,
       });
     </script>
     <script>

@@ -234,10 +234,7 @@ const About: React.FC = () => {
         {/* Section Heading */}
         <ScrollReveal animation="fade-up">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border-cyan-500/20 text-xs font-mono text-cyan-300 mb-4">
-              <Sparkles size={13} className="text-cyan-400" />
-              <span>Core Profile & Philosophy</span>
-            </div>
+            
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-6">
               Engineering with Full-Stack Rigor &{" "}
               <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">

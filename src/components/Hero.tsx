@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
   }, []);
 
   const stats = [
-    { value: "3+", label: "Years Experience", icon: Rocket },
+    { value: "1+", label: "Years Experience", icon: Rocket },
     { value: "15+", label: "Engineered Projects", icon: Code2 },
     { value: "MERN + .NET", label: "Full-Stack Mastery", icon: Database },
     { value: "Vibe Coding", label: "Antigravity & Cursor", icon: Bot },
@@ -234,22 +234,6 @@ const Hero: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Bottom Bounce Down Indicator */}
-        <div className="flex justify-center mt-12 sm:mt-16">
-          <button
-            onClick={() => scrollToSection("about")}
-            aria-label="Scroll down to About section"
-            className="flex flex-col items-center gap-2 text-gray-400 hover:text-cyan-400 transition-colors group cursor-pointer"
-          >
-            <span className="text-[11px] uppercase tracking-widest font-mono text-gray-500 group-hover:text-cyan-400 transition-colors">
-              Scroll Down
-            </span>
-            <div className="w-8 h-12 rounded-full border-2 border-white/20 group-hover:border-cyan-400/60 flex items-start justify-center p-2 transition-colors">
-              <div className="w-1.5 h-2.5 rounded-full bg-cyan-400 animate-bounce" />
-            </div>
-          </button>
         </div>
       </div>
     </section>
